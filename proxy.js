@@ -10,6 +10,13 @@ const PLAIN_TOKEN = process.env.PLAIN_TOKEN || 'my_static_token';
 const USE_AUTH = process.env.USE_AUTH === 'true';
 const AUTH_TYPE = process.env.AUTH_TYPE || 'plain';
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Range, Content-Type, Authorization');
+    next();
+});
+
 const authenticateToken = (req, res, next) => {
     if (!USE_AUTH) return next();
     
@@ -47,6 +54,7 @@ app.get('/:token/*', authenticateToken, async (req, res) => {
         const videoResponse = await axios.get(videoUrl, { headers: { Range: range }, responseType: 'stream' });
 
         res.writeHead(206, {
+            'Access-Control-Allow-Origin': '*',
             'Content-Range': videoResponse.headers['content-range'],
             'Accept-Ranges': 'bytes',
             'Content-Length': videoResponse.headers['content-length'],
