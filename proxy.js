@@ -54,7 +54,6 @@ app.get('/:token/*', authenticateToken, async (req, res) => {
         const videoResponse = await axios.get(videoUrl, { headers: { Range: range }, responseType: 'stream' });
 
         res.writeHead(206, {
-            'Access-Control-Allow-Origin': '*',
             'Content-Range': videoResponse.headers['content-range'],
             'Accept-Ranges': 'bytes',
             'Content-Length': videoResponse.headers['content-length'],
