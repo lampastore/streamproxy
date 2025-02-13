@@ -7,8 +7,15 @@ const app = express();
 const PORT = process.env.PORT || 9198;
 const JWT_SECRET = process.env.JWT_SECRET || 'my_secret_key';
 const PLAIN_TOKEN = process.env.PLAIN_TOKEN || 'token';
-const USE_AUTH = process.env.USE_AUTH === 'true';
 const AUTH_TYPE = process.env.AUTH_TYPE || 'plain';
+let USE_AUTH;
+if (process.env.USE_AUTH !== undefined) {
+    USE_AUTH = process.env.USE_AUTH === 'true'; 
+} else {
+    USE_AUTH = true; 
+}
+
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
