@@ -45,7 +45,8 @@ if ! command -v node &> /dev/null; then
 
     # Install latest Node.js from NodeSource
     curl -fsSL https://deb.nodesource.com/setup_current.x | bash -
-    apt install -y nodejs npm
+    apt install -y nodejs
+    npm install -g npm
 fi
 
 # Verify installation
