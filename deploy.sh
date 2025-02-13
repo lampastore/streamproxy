@@ -31,6 +31,7 @@ wget -O latest-release.tar.gz "$LATEST_RELEASE_URL"
 echo "📂 Setting up install directory..."
 mkdir -p "$INSTALL_DIR"
 rm -rf "$INSTALL_DIR"/*
+chmod -R u+w "$INSTALL_DIR"
 
 # Extract the tarball
 echo "📦 Extracting files..."
