@@ -44,7 +44,7 @@ if ! command -v node &> /dev/null; then
     apt update   
 
     # Remove old versions
-    apt remove -y nodejs npm
+    #apt remove -y nodejs npm
 
     # Install latest Node.js from NodeSource
     curl -fsSL https://deb.nodesource.com/setup_current.x | bash -
