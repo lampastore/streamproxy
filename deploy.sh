@@ -25,7 +25,7 @@ fi
 
 # Download the latest release tarball
 echo "⬇️ Downloading latest release..."
-wget -O latest-release.tar.gz "$LATEST_RELEASE_URL"
+wget -O /tmp/latest-release.tar.gz "$LATEST_RELEASE_URL"
 
 # Create install directory
 echo "📂 Setting up install directory..."
@@ -35,10 +35,10 @@ chmod -R u+w "$INSTALL_DIR"
 
 # Extract the tarball
 echo "📦 Extracting files..."
-tar -xzf latest-release.tar.gz -C /tmp
+tar -xzf /tmp/latest-release.tar.gz -C /tmp
 LATEST_DIR=$(ls -d /tmp/$GITHUB_OWNER-*/ | head -n 1)
 mv "$LATEST_DIR"/* "$INSTALL_DIR"
-rm -rf "$LATEST_DIR" latest-release.tar.gz
+rm -rf "$LATEST_DIR" /tmp/latest-release.tar.gz
 
 # Check if Node.js is installed
 if ! command -v node &> /dev/null; then
