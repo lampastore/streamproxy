@@ -44,6 +44,8 @@ rm -rf "$LATEST_DIR" /tmp/latest-release.tar.gz
 if ! command -v node &> /dev/null; then
     echo "⚡ Installing the latest Node.js and npm..."
        
+    # Install latest Node.js from NodeSource
+    curl -fsSL https://deb.nodesource.com/setup_current.x | bash -
     apt install -y nodejs npm
 fi
 
