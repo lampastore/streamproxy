@@ -12,6 +12,9 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
+apt update
+apt install -y curl unzip
+
 echo "🔍 Fetching the latest release..."
 LATEST_RELEASE_URL=$(curl -s "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/latest" | grep "tarball_url" | cut -d '"' -f 4)
 
