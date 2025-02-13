@@ -12,9 +12,6 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-apt update
-apt install -y curl unzip
-
 echo "🔍 Fetching the latest release..."
 LATEST_RELEASE_URL=$(curl -s "https://api.github.com/repos/$GITHUB_OWNER/$GITHUB_REPO/releases/latest" | grep "tarball_url" | cut -d '"' -f 4)
 
@@ -44,6 +41,8 @@ rm -rf "$LATEST_DIR" /tmp/latest-release.tar.gz
 if ! command -v node &> /dev/null; then
     echo "⚡ Installing the latest Node.js and npm..."
        
+    apt update   
+
     # Install latest Node.js from NodeSource
     curl -fsSL https://deb.nodesource.com/setup_current.x | bash -
     apt install -y nodejs npm
